@@ -1,1 +1,0 @@
-average loading speed in seconds: 2.4890004926257663sites with 100% more loading speed than average: {'https://frontend-git-resolve-262.serlo.now.sh/serlo': 7.495222806930542}
