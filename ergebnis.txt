@@ -1,3 +1,0 @@
-average loading speed in seconds: 
-0.887143325805664sites with 100% more loading speed than average: 
-{}
