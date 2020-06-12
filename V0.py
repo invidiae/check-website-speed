@@ -1,5 +1,3 @@
-import pdb
-import matplotlib.pyplot as plt
 from selenium import webdriver
 import time
 URL = "https://frontend-git-resolve-262.serlo.now.sh/"
@@ -24,13 +22,10 @@ avgload = sum(load.values())/len(load.values())
 slow = {}
 for t in load:
     if load[t] > 2*avgload:
-       slow[t] = load[t]
-print(load)
-print(f"average:{avgload},slow{slow}")
-
+        slow[t] = load[t]
 with open("results.txt", "w+") as results:
-    results.write("average loading speed in seconds: ")
+    results.write("average loading speed in seconds: \n")
     results.write(str(avgload))
-    results.write("sites with 100% more loading speed than average: ")
+    results.write("\n")
+    results.write("sites with 100% more loading speed than average: \n")
     results.write(str(slow))
-    
