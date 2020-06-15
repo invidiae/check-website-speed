@@ -11,7 +11,7 @@ while end_time > time.time():
     wrong_link = False
     elems = driver.find_elements_by_xpath("//a[@href]")
     for elem in elems:
-        links.append(elem.get_attribute("href"))  # add some randomness (maybe 10% of sample)
+        links.append(elem.get_attribute("href"))
     links = random.sample(links,int(len(links)*0.5))
     while not wrong_link:
         link = links[1]
