@@ -1,30 +1,30 @@
 from selenium import webdriver
 import time
 import random
-driver = webdriver.Chrome("/home/camillo/chromedriver")
+driver = webdriver.Chrome("/usr/bin/chromedriver")
 URL = "https://frontend-git-resolve-262.serlo.now.sh"
 driver.get(URL)
-end_time = time.time()+60*5
+end_time = time.time()+60*0.1
 links = []
 load = {}
-fächer = ["/mathe", "/informatik", "/biologie", "/nachhaltigkeit"]
 while end_time > time.time():
     wrong_link = False
     elems = driver.find_elements_by_xpath("//a[@href]")
     for elem in elems:
         links.append(elem.get_attribute("href"))  # add some randomness (maybe 10% of sample)
+    links = random.sample(links,int(len(links)*0.5))
     while not wrong_link:
-        link = links[-1]
-        if link in load or not link[0:len(URL)+len(fächer[0])] == URL+fächer[0]:
-            del links[-1]
+        link = links[1]
+        if link in load or not link[0:len(URL)] == URL:
+            del links[1]
         else:
             wrong_link = True
-            link = links.pop(-1)
+            link = links.pop(1)
     tic = time.time()
     driver.get(link)
     toc = time.time()
     load[link] = toc-tic
-
+driver.close()
 avgload = sum(load.values())/len(load)
 slow = {}
 for t in load:
