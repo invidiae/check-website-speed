@@ -1,7 +1,7 @@
 from selenium import webdriver
 import time
 URL = "https://frontend-git-resolve-262.serlo.now.sh/"
-path = "/home/camillo/chromedriver"
+path = "/usr/bin/chromedriver"
 links = []
 load = {}
 measured = []
