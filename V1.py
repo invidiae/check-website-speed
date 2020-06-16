@@ -4,7 +4,7 @@ import random
 driver = webdriver.Chrome("/usr/bin/chromedriver")
 URL = "https://frontend-git-resolve-262.serlo.now.sh"
 driver.get(URL)
-end_time = time.time()+60*0.1
+end_time = time.time()+60*5
 links = []
 load = {}
 while end_time > time.time():
@@ -24,7 +24,7 @@ while end_time > time.time():
     driver.get(link)
     toc = time.time()
     load[link] = toc-tic
-driver.close()
+
 avgload = sum(load.values())/len(load)
 slow = {}
 for t in load:
