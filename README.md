@@ -9,7 +9,3 @@
 - **C:** de.serlo-staging.dev/URL
  
 - **E:** de.serlo-staging.dev/api/frontend/URL
-
-
-**der Plot wird noch besser**
-(war der erste Versuch)
