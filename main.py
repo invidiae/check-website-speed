@@ -1,7 +1,7 @@
 import csv
 import time
 import requests
-URLs = ["/1595", "/74829", "/16043", "/75678", "/40786"]
+URLs = ["/1595", "/74829", "/16043", "/75678", "/40786", "/1627", "/48492", "/24706", "/157600", "/19882", "/18922"]
 cookie = {'useFrontend': '0'}
 wo_cache = {'Authorization': '0'}
 anmeldung = {'Authorization': 'Basic c3VybG90ZWFtOnNlcmxvdGVhbQ=='}
@@ -10,7 +10,7 @@ csv_header = ["URL", "Loading_Time", "Cache", "Mode"]
 
 def A(URL):
     FullURL = "https://frontend-git-resolve-262.serlo.now.sh"+URL
-    for i in range(10):
+    for i in range(20):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie)
         toc = time.time()
@@ -19,7 +19,7 @@ def A(URL):
 
 def B(URL):
     FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend"+URL
-    for i in range(10):
+    for i in range(20):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=wo_cache)
         toc = time.time()
@@ -28,7 +28,7 @@ def B(URL):
 
 def C(URL):
     FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend"+URL
-    for i in range(10):
+    for i in range(20):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie)
         toc = time.time()
@@ -37,7 +37,7 @@ def C(URL):
 
 def D(URL):
     FullURL = "https://de.serlo-staging.dev"+URL
-    for i in range(10):
+    for i in range(20):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=anmeldung)
         toc = time.time()
@@ -46,7 +46,7 @@ def D(URL):
 
 def E(URL):
     FullURL = "https://de.serlo-staging.dev/api/frontend"+URL
-    for i in range(3):
+    for i in range(20):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=anmeldung)
         toc = time.time()
