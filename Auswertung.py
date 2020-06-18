@@ -3,29 +3,55 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 df = pd.read_csv("loadtimes.csv")
-Modes = ["A", "B", "C", "D", "E"]
-avgs = {}
-for M in Modes:
-    avgs[M] = (df.loc[df["Mode"] == M].Loading_Time.median())
-ninety_per = {}
-for M in Modes:
-    ninety_per[M] = (df.loc[df["Mode"] == M].Loading_Time.quantile(0.95))
-ten_per = {}
-for M in Modes:
-    ten_per[M] = (df.loc[df["Mode"] == M].Loading_Time.quantile(0.1))
+Modes = sorted(df.Mode.unique())
+URLs = df.URL.unique()
+df1 = df.loc[(df.Mode == "A") | (df.Mode == "D")]
+df2 = df.loc[(df.Mode == "B") | (df.Mode == "E")]
+df3 = df.loc[(df.Mode == "C")]
+dd = [df.loc[df.URL == url] for url in URLs]
 
+Median = [[d.loc[d.Mode == "A"].median() for d in dd],
+          [d.loc[d.Mode == "B"].median() for d in dd],
+          [d.loc[d.Mode == "C"].median() for d in dd],
+          [d.loc[d.Mode == "D"].median() for d in dd],
+          [d.loc[d.Mode == "E"].median() for d in dd]]
 
-sns.violinplot(df.Loading_Time, df.Mode)
-plt.savefig("ViolinPlot.png")
+Per7 = [[d.loc[d.Mode == "A"].quantile(0.7) for d in dd],
+        [d.loc[d.Mode == "B"].quantile(0.7) for d in dd],
+        [d.loc[d.Mode == "C"].quantile(0.7) for d in dd],
+        [d.loc[d.Mode == "D"].quantile(0.7) for d in dd],
+        [d.loc[d.Mode == "E"].quantile(0.7) for d in dd]]
+
+Per3 = [[d.loc[d.Mode == "A"].quantile(0.3) for d in dd],
+        [d.loc[d.Mode == "B"].quantile(0.3) for d in dd],
+        [d.loc[d.Mode == "C"].quantile(0.3) for d in dd],
+        [d.loc[d.Mode == "D"].quantile(0.3) for d in dd],
+        [d.loc[d.Mode == "E"].quantile(0.3) for d in dd]]
+
+sns.violinplot(x = "Loading_Time", y = "URL", hue = "Mode", data=df1, split=True)
+plt.savefig("ViolinPlot1.png", dpi=500)
+plt.close()
+sns.violinplot(x = "Loading_Time", y = "URL", hue = "Mode", data=df2, split=True)
+plt.savefig("ViolinPlot2.png", dpi=500)
+plt.close()
+sns.violinplot(x = "Loading_Time", y = "URL", data=df3)
+plt.savefig("ViolinPlot3.png", dpi=500)
+plt.close()
 
 with open("results.txt", "w+") as results:
-    results.write("Median: \n")
-    for avg in avgs:
-        results.writelines(f"{avg}: {avgs[avg]}\n")
+    results.write("Median:\n")
+    for index,rl in enumerate(URLs):
+        results.write(f"URL: {rl} \n")
+        for i in range(len(Modes)):
+            results.write(f"{Modes[i]}: {Median[i][index]}\n")
+    results.write("70th Percentile:\n")
+    for index,rl in enumerate(URLs):
+        results.write(f"URL: {rl} \n")
+        for i in range(len(Modes)):
+            results.write(f"{Modes[i]}: {Per7[i][index]}\n")
+    results.write("50th Percentile:\n")
 
-    results.write("95th percentile: \n")
-    for p in ninety_per:
-        results.writelines(f"{p}: {ninety_per[p]}\n")
-    results.write("10th percentile:\n")
-    for p in ten_per:
-        results.writelines(f"{p}: {ten_per[p]}\n")
+    for index, rl in enumerate(URLs):
+        results.write(f"URL: {rl} \n")
+        for i in range(len(Modes)):
+            results.write(f"{Modes[i]}: {Per3[i][index]}\n")

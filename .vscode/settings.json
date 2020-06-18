@@ -1,5 +1,6 @@
 {
     "python.pythonPath": "/home/camillo/anaconda3/bin/python",
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true
 }
