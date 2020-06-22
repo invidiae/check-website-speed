@@ -9,50 +9,50 @@ csv_header = ["URL", "Loading_Time", "Cache", "Mode"]
 
 
 def A(URL):                 # HTML doesn't get cashed, except homepage
-    FullURL = "https://frontend-git-resolve-262.serlo.now.sh"+URL
+    FullURL = "https://frontend-git-resolve-262.serlo.now.sh" + URL
     for i in range(50):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie)
         toc = time.time()
-        writer.writerow([URL, toc-tic, r.headers['x-vercel-cache'], "A"])
+        writer.writerow([URL, toc - tic, r.headers['x-vercel-cache'], "A"])
 
 
 def B(URL):
-    FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend"+URL
+    FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend" + URL
     for i in range(50):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=wo_cache)
         toc = time.time()
-        writer.writerow([URL, toc-tic, r.headers['x-vercel-cache'], "B"])
+        writer.writerow([URL, toc - tic, r.headers['x-vercel-cache'], "B"])
 
 
 def C(URL):
-    FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend"+URL
+    FullURL = "https://frontend-git-resolve-262.serlo.now.sh/api/frontend" + URL
     for i in range(2):      # Make sure URL is already cached
         requests.get(FullURL, cookies=cookie)
     for i in range(300):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie)
         toc = time.time()
-        writer.writerow([URL, toc-tic, r.headers['x-vercel-cache'], "C"])
+        writer.writerow([URL, toc - tic, r.headers['x-vercel-cache'], "C"])
 
 
 def D(URL):             # Can't be cached because of Authentification
-    FullURL = "https://de.serlo-staging.dev"+URL
+    FullURL = "https://de.serlo-staging.dev" + URL
     for i in range(50):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=anmeldung)
         toc = time.time()
-        writer.writerow([URL, toc-tic, r.headers['x-vercel-cache'], "D"])
+        writer.writerow([URL, toc - tic, r.headers['x-vercel-cache'], "D"])
 
 
 def E(URL):
-    FullURL = "https://de.serlo-staging.dev/api/frontend"+URL
+    FullURL = "https://de.serlo-staging.dev/api/frontend" + URL
     for i in range(50):
         tic = time.time()
         r = requests.get(FullURL, cookies=cookie, headers=anmeldung)
         toc = time.time()
-        writer.writerow([URL, toc-tic, r.headers['x-vercel-cache'], "E"])
+        writer.writerow([URL, toc - tic, r.headers['x-vercel-cache'], "E"])
 
 
 with open("loadtimes.csv", "a", newline='') as loadtimes:
