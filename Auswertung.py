@@ -28,13 +28,13 @@ Per3 = [[d.loc[d.Mode == "A"].quantile(0.3) for d in dd],
         [d.loc[d.Mode == "D"].quantile(0.3) for d in dd],
         [d.loc[d.Mode == "E"].quantile(0.3) for d in dd]]
 
-sns.violinplot(x = "Loading_Time", y = "URL", hue = "Mode", data=df1, split=True)
+sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df1, split=True)
 plt.savefig("ViolinPlot1.png", dpi=500)
 plt.close()
-sns.violinplot(x = "Loading_Time", y = "URL", hue = "Mode", data=df2, split=True)
+sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df2, split=True)
 plt.savefig("ViolinPlot2.png", dpi=500)
 plt.close()
-sns.violinplot(x = "Loading_Time", y = "URL", data=df3)
+sns.violinplot(x="Loading_Time", y="URL", data=df3)
 plt.savefig("ViolinPlot3.png", dpi=500)
 plt.close()
 
@@ -55,3 +55,4 @@ with open("results.txt", "w+") as results:
         results.write(f"URL: {rl} \n")
         for i in range(len(Modes)):
             results.write(f"{Modes[i]}: {Per3[i][index]}\n")
+
