@@ -37,7 +37,6 @@ plt.close()
 sns.violinplot(x="Loading_Time", y="URL", data=df3)
 plt.savefig("ViolinPlot3.png", dpi=500)
 plt.close()
-
 with open("results.txt", "w+") as results:
     results.write("Median:\n")
     for index,rl in enumerate(URLs):
@@ -55,4 +54,3 @@ with open("results.txt", "w+") as results:
         results.write(f"URL: {rl} \n")
         for i in range(len(Modes)):
             results.write(f"{Modes[i]}: {Per3[i][index]}\n")
-
