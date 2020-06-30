@@ -25,15 +25,15 @@ if speicherart == 0:
     sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df3, ax=ax[2])
     plt.savefig("superplot.png")
 elif speicherart == 1:
-    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df1, cut=0, split=True)
+    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df1, cut=0, split=True, inner=None, linewidth=0)
     plt.title(f"A: {A_AVG}; D: {D_AVG}")
     plt.savefig("A&D.png")
     plt.close()
-    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df2, cut=0, split=True)
+    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df2, cut=0, split=True, inner=None, linewidth=0)
     plt.title(f"B: {B_AVG}; E: {E_AVG}")
     plt.savefig("B&E.png")
     plt.close()
-    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df3, cut=0, split=True)
+    sns.violinplot(x="Loading_Time", y="URL", hue="Mode", data=df3, cut=0, split=True,inner=None,  linewidth=0)
     plt.title(f"C: {C_AVG}; F: {F_AVG}")
     plt.savefig("C&F.png")
 elif speicherart == 2:
