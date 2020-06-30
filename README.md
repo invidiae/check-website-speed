@@ -9,3 +9,7 @@
 - **D:** de.serlo-staging.dev/URL (kein cache weil anmeldung erforderlich)
  
 - **E:** de.serlo-staging.dev/api/frontend/URL (kein cache weil anmeldung erforderlich)
+
+- **F:**
+später auf frontend-git-update-readme.serlo.vercel.app
+frontend.serlo.org
